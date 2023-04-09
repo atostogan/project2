@@ -1,23 +1,33 @@
+'''
+Checks functionality of HomePage
+'''
 from utilities.base_test_case import BaseTestCase
 from pages.home_page import HomePage
-import time
 
 
 class TestOpenHomePage(BaseTestCase):
+    '''
+    Class for HomePage tests
+    '''
 
-    def test_OpenHomePage(self):
+    def test_open_home_page(self):
         '''
         Verifies if the HomePage opens
         '''
-        assert self.driver.title == "Google"
+        driver = self.driver
+        home_page_title = "Google"
+        self.assertEqual(driver.title, home_page_title, "HomePage Failed to load")
 
-    def test_GoogleSearch(self):
+    def test_google_search(self):
         '''
         Verifies if page with search results opens
         '''
-        home_page = HomePage(self.driver)
-        home_page.get_search_field().send_keys('apple')
-        time.sleep(1)
-        home_page.get_google_search_button().click()
-        assert self.driver.title == "apple - Google Search"
+        driver = self.driver
+        home_page = HomePage(driver)
 
+        home_page.get_search_field().send_keys('apple')
+        driver.implicitly_wait(1)
+
+        home_page.get_google_search_button().click()
+        search_results_page_title = "apple - Google Search"
+        self.assertEqual(driver.title, search_results_page_title, "SearchResultsPage Failed to load")

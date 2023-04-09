@@ -1,12 +1,25 @@
+'''
+Contains class for setting up environment to run test and doing clean up after it is finished
+'''
 import unittest
 from selenium import webdriver
 
 
 class BaseTestCase(unittest.TestCase):
+    '''
+    Class for setting up environment to run test and doing clean up after it is finished
+    '''
+
     def setUp(self):
-        self.driver = webdriver.Chrome(executable_path="/Users/atostogan/chromedriver/chromedriver")
+        '''
+        Setup before running test
+        '''
+        self.driver = webdriver.Chrome()
         self.driver.maximize_window()
-        self.driver.get("https://www.google.com")
+        self.driver.get("https://google.com")
 
     def tearDown(self):
+        '''
+        Cleanup after running test
+        '''
         self.driver.close()
