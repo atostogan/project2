@@ -2,16 +2,13 @@
 Contains functions for getting element reference
 '''
 from selenium.webdriver.common.by import By
+from pages.base_page import BasePage
 
 
-class HomePage:
+class HomePage(BasePage):
     '''
     Class for storing HomePage elements
     '''
-
-    def __init__(self, driver):
-        self.driver = driver
-
     search_field = (By.CSS_SELECTOR, '[name = "q"]')
     google_search_button = (By.CSS_SELECTOR, '[name = "btnK"]')
 
@@ -19,10 +16,10 @@ class HomePage:
         '''
         Returns reference to the search_field
         '''
-        return self.driver.find_element(*HomePage.search_field)
+        return self.driver.find_element(*self.search_field)
 
     def get_google_search_button(self):
         '''
         Returns reference to the google_search_button
         '''
-        return self.driver.find_element(*HomePage.google_search_button)
+        return self.driver.find_element(*self.google_search_button)

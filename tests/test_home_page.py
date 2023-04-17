@@ -14,20 +14,20 @@ class TestOpenHomePage(BaseTestCase):
         '''
         Verifies if the HomePage opens
         '''
-        driver = self.driver
         home_page_title = "Google"
-        self.assertEqual(driver.title, home_page_title, "HomePage Failed to load")
+        self.assertEqual(self.driver.title, home_page_title, "HomePage Failed to load")
 
     def test_google_search(self):
         '''
         Verifies if page with search results opens
         '''
-        driver = self.driver
-        home_page = HomePage(driver)
+        home_page = HomePage(self.driver)
 
+        home_page.wait_for_element_to_load(HomePage.search_field)
         home_page.get_search_field().send_keys('apple')
-        driver.implicitly_wait(1)
 
+        home_page.wait_for_element_to_load(HomePage.google_search_button)
         home_page.get_google_search_button().click()
         search_results_page_title = "apple - Google Search"
-        self.assertEqual(driver.title, search_results_page_title, "SearchResultsPage Failed to load")
+
+        self.assertEqual(self.driver.title, search_results_page_title, "SearchResultsPage Failed to load")

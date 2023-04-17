@@ -3,12 +3,14 @@ Contains class for setting up environment to run test and doing clean up after i
 '''
 import unittest
 from selenium import webdriver
+import config
 
 
 class BaseTestCase(unittest.TestCase):
     '''
     Class for setting up environment to run test and doing clean up after it is finished
     '''
+    driver_var = None
 
     def setUp(self):
         '''
@@ -16,10 +18,11 @@ class BaseTestCase(unittest.TestCase):
         '''
         self.driver = webdriver.Chrome()
         self.driver.maximize_window()
-        self.driver.get("https://google.com")
+        self.driver.get(config.DEFAULT_URL)
 
     def tearDown(self):
         '''
         Cleanup after running test
         '''
-        self.driver.close()
+        if not self.driver_var:
+            self.driver.quit()
