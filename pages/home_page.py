@@ -11,6 +11,7 @@ class HomePage(BasePage):
     '''
     search_field = (By.CSS_SELECTOR, '[name = "q"]')
     google_search_button = (By.CSS_SELECTOR, '[name = "btnK"]')
+    gmail_link = (By.LINK_TEXT, 'Gmail')
 
     def get_search_field(self):
         '''
@@ -23,3 +24,9 @@ class HomePage(BasePage):
         Returns reference to the google_search_button
         '''
         return self.driver.find_element(*self.google_search_button)
+
+    def get_gmail_link(self):
+        '''
+        Returns reference to the gmail_link
+        '''
+        return self.driver.find_element(*self.gmail_link)
