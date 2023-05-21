@@ -13,9 +13,7 @@ class HomePage(BasePage):
     search_field = (By.CSS_SELECTOR, '[name = "q"]')
     google_search_button = (By.CSS_SELECTOR, '[name = "btnK"]')
     gmail_link = (By.LINK_TEXT, 'Gmail')
-    #sign_in_button = (By.LINK_TEXT, 'Sign in')
     create_an_account_button = (By.LINK_TEXT, 'Create an account')
-    #result_stats = (By.ID, 'result-stats')
 
     def get_search_field(self):
         '''
@@ -41,8 +39,4 @@ class HomePage(BasePage):
         '''
         return self.driver.find_element(*self.create_an_account_button)
 
-    # def get_result_stats(self):
-    #     '''
-    #     Returns reference to the sign_in_button
-    #     '''
-    #     return self.driver.find_element(*self.result_stats)
+
