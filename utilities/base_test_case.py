@@ -5,25 +5,29 @@ import unittest
 from selenium import webdriver
 from webdriver_manager.chrome import ChromeDriverManager
 import config
+from pages.home_page import HomePage
 
 
 class BaseTestCase(unittest.TestCase):
     '''
     Class for setting up environment to run test and doing clean up after it is finished
     '''
-    driver_var = None
+    driver = None
 
     def setUp(self):
         '''
         Setup before running test
         '''
-        self.driver = webdriver.Chrome(ChromeDriverManager().install())
+
+        if self.driver is None:
+            self.driver = webdriver.Chrome(ChromeDriverManager().install())
         self.driver.maximize_window()
         self.driver.get(config.DEFAULT_URL)
+        self.home_page = HomePage(self.driver)
 
     def tearDown(self):
         '''
         Cleanup after running test
         '''
-        if not self.driver_var:
+        if self.driver:
             self.driver.quit()
