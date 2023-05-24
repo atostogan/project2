@@ -4,7 +4,7 @@ Checks functionality of SearchResultsPage
 import logging
 from selenium.common.exceptions import TimeoutException
 from utilities.base_test_case import BaseTestCase
-import utilities.add_logging as log
+from utilities.add_logging import create_logger
 from pages.home_page import HomePage
 from pages.search_results_page import SearchResultsPage
 
@@ -13,7 +13,7 @@ class TestSearchResultsPage(BaseTestCase):
     '''
         Class for SearchResultsPage tests
     '''
-    logger = log.create_logger('test_search_results_page')
+    logger = create_logger('test_search_results_page')
 
     def test_open_search_results_page(self):
         '''

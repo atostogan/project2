@@ -4,7 +4,7 @@ Checks functionality of HomePage
 import logging
 from selenium.common.exceptions import TimeoutException
 from utilities.base_test_case import BaseTestCase
-import utilities.add_logging as log
+from utilities.add_logging import create_logger
 from pages.home_page import HomePage
 
 
@@ -12,7 +12,7 @@ class TestHomePage(BaseTestCase):
     '''
     Class for HomePage tests
     '''
-    logger = log.create_logger('test_home_page')
+    logger = create_logger('test_home_page')
 
     def test_open_home_page(self):
         '''
