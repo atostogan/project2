@@ -20,9 +20,12 @@ class BaseTestCase(unittest.TestCase):
         '''
 
         if self.driver is None:
-            chrome_options = webdriver.ChromeOptions()
+            # chrome_options = webdriver.ChromeOptions()
+            # self.driver = webdriver.Remote(command_executor=config.SELENIUM_GRID_URL,
+            #                                options=chrome_options)
+            firefox_options = webdriver.FirefoxOptions()
             self.driver = webdriver.Remote(command_executor=config.SELENIUM_GRID_URL,
-                                           options=chrome_options)
+                                           options=firefox_options)
             # self.driver = webdriver.Chrome(ChromeDriverManager().install())
         self.driver.maximize_window()
         self.driver.get(config.DEFAULT_URL)
