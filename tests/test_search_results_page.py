@@ -16,23 +16,23 @@ class TestSearchResultsPage(BaseTestCase):
     '''
     logger = create_logger('test_search_results_page')
 
-    def test_open_search_results_page(self, set_up):
+    def test_open_search_results_page(self, home_page):
         '''
         Verifies if page with search results opens
         '''
         self.logger.info('Waiting for search_field to load')
-        set_up.wait_for_element_to_load(HomePage.search_field)
+        home_page.wait_for_element_to_load(HomePage.search_field)
         self.logger.info('Fill in the search field')
-        set_up.get_search_field().send_keys('apple')
+        home_page.get_search_field().send_keys('apple')
 
         self.logger.info('Waiting for google_search_button to load')
-        set_up.wait_for_element_to_load(HomePage.google_search_button)
+        home_page.wait_for_element_to_load(HomePage.google_search_button)
         self.logger.info('Click on Google Search button')
-        set_up.get_google_search_button().click()
+        home_page.get_google_search_button().click()
 
         self.logger.info('Waiting for SearchResultsPage to load')
         try:
-            set_up.wait_for_element_to_load(SearchResultsPage.result_stats)
+            home_page.wait_for_element_to_load(SearchResultsPage.result_stats)
             self.logger.info('SearchResultsPage is loaded successfully')
         except TimeoutException as error:
             self.logger.error('SearchResultsPage Failed to load')

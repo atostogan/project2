@@ -14,31 +14,31 @@ class TestHomePage(BaseTestCase):
     '''
     logger = create_logger('test_home_page')
 
-    def test_open_home_page(self, set_up):
+    def test_open_home_page(self, home_page):
         '''
         Verifies if the HomePage opens
         '''
         self.logger.info('Waiting for HomePage to load')
         try:
-            set_up.wait_for_element_to_load(HomePage.search_field)
+            home_page.wait_for_element_to_load(HomePage.search_field)
             self.logger.info('HomePage is loaded successfully')
         except TimeoutException as error:
             self.logger.error('Home Page Failed to load')
             pytest.fail(f'Home Page Failed to load: {error}')
 
-    def test_open_gmail_link(self, set_up):
+    def test_open_gmail_link(self, home_page):
         '''
         Verifies if Gmail login page opens
         '''
         self.logger.info('Waiting for gmail_link element to load')
-        set_up.wait_for_element_to_load(HomePage.gmail_link)
+        home_page.wait_for_element_to_load(HomePage.gmail_link)
         self.logger.info('Click on Gmail link')
-        set_up.get_gmail_link().click()
+        home_page.get_gmail_link().click()
 
         self.logger.info('Waiting for Gmail login page to load')
 
         try:
-            set_up.wait_for_element_to_load(HomePage.create_an_account_button)
+            home_page.wait_for_element_to_load(HomePage.create_an_account_button)
             self.logger.info('Gmail login page is loaded successfully')
         except TimeoutException as error:
             self.logger.error('Gmail login page failed to load')

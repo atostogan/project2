@@ -16,6 +16,9 @@ class BaseTestCase:
     @staticmethod
     @pytest.fixture(scope='class')
     def driver(browser):
+        '''
+        Returns driver when test gets to run and quits driver after the test finished running
+        '''
         chrome_options = webdriver.ChromeOptions()
         firefox_options = webdriver.FirefoxOptions()
         edge_options = webdriver.EdgeOptions()
@@ -30,6 +33,9 @@ class BaseTestCase:
         driver.quit()
 
     @pytest.fixture(scope='class')
-    def set_up(self, driver):
+    def home_page(self, driver):
+        '''
+        Returns HomePage object which is being used to run tests
+        '''
         driver.get(config.DEFAULT_URL)
         return HomePage(driver)
